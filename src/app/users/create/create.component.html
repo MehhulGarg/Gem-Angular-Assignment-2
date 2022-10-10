@@ -62,7 +62,7 @@
             <input type="file" class="form-control-file" id="profile_photo" accept=".jpg,.jpeg,.png" (change)="onChange($event)">
             <span style="color: red;">{{file_error}}</span>
         </div>
-        <button type="submit"  class="btn btn-outline-dark" (click)="open(content)">Preview</button>
+        <button type="submit"  class="btn btn-outline-dark" [disabled]="!loginForm.valid" (click)="open(content)">Preview</button>
     </form>
 </div>
 
@@ -118,4 +118,4 @@
     </div>
 </ng-template>
 
-<!-- [disabled]="!loginForm.valid" -->
+<!--  -->

@@ -15,13 +15,6 @@ export class ViewComponent implements OnInit {
   myTech: String[]=[];
   users : any[]=[]
   ngOnInit(): void {
-    // this.message=this.dataService.myData;
-    // this.myTech = this.dataService.getValues();
-    // this.message= this.dataService.getData();
-    // console.log(this.message);
-    
-    // this.message.favTech=this.myTech;
-    // data.push(this.message);
     this.myTech = this.dataService.getValues();
     
     this.dataService.getUsers().subscribe((users: any[]) => {

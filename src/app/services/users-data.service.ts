@@ -22,6 +22,5 @@ public getData(){
  public getUsers():Observable<any> {
   return of(this.myData);
 }
-//  { username: string; gender: string; email: string; phone: string; category: string; profile_photo:any}
 
 }

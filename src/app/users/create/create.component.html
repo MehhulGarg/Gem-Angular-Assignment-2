@@ -1,0 +1,121 @@
+<h1>Enter Details</h1>
+<div class="form">
+
+    <form [formGroup]="loginForm" (ngSubmit)="previewForm()">
+        <div class="form-group">
+            <label for="username"><strong>Name</strong></label>
+            <input type="text" class="form-control" id="username" placeholder="Enter Name" minlength="2" maxlength="30"
+                formControlName="username">
+            <span style="color: red;" *ngIf="username && username.invalid && username.touched">Please Enter valid
+                Username</span>
+        </div>
+        <div class="form-group">
+            <label for="gender"><strong>Gender</strong></label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male"
+                    formControlName="gender">
+                <label class="form-check-label" for="male">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female"
+                    formControlName="gender">
+                <label class="form-check-label" for="female">
+                    Female
+                </label>
+            </div>
+            <span style="color: red;" *ngIf="gender && gender.invalid && gender.touched">Please Select Gender</span>
+        </div>
+        <div class="form-group">
+            <label for="email"> <strong>Email address</strong></label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" formControlName="email">
+            <span style="color: red;" *ngIf="email && email.invalid && email.touched">Please enter valid Email</span>
+        </div>
+        <div class="form-group">
+            <label for="phone"><strong>Phone Number</strong></label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter phone" formControlName="phone"
+                minlength="10">
+            <span style="color: red;" *ngIf="phone && phone.invalid && phone.touched">Please enter valid Phone number(10
+                digits)</span>
+        </div>
+        <div class="form-group">
+            <label for="category"><strong>Category</strong></label>
+            <select class="form-control" id="category" formControlName="category">
+                <option selected>Select</option>
+                <option value="General">General</option>
+                <option value="SC/ST">SC/ST</option>
+                <option value="OBC">OBC</option>
+            </select>
+            <span *ngIf="category && category.invalid && category.touched">Please select category</span>
+        </div>
+        <div class="form-group">
+            <label for="technology"><strong>Technology</strong></label>
+            <div class="form-check form-check-inline" *ngFor="let control of techArray.controls; let i= index;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{i}}" (change)="getSelectedTech()"
+                    [formControl]="$any(control)">
+                <label class="form-check-label" for="inlineCheckbox{{i}}">{{technologies[i]}}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="profile_photo"> <strong>Profile Photo</strong><i>(Optional)</i></label>
+            <input type="file" class="form-control-file" id="profile_photo" accept=".jpg,.jpeg,.png" (change)="onChange($event)">
+            <span style="color: red;">{{file_error}}</span>
+        </div>
+        <button type="submit"  class="btn btn-outline-dark" (click)="open(content)">Preview</button>
+    </form>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile Deatils</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Input Field</th>
+                <th scope="col">Info</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td>{{loginForm.value.username}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Gender</th>
+                <td>{{loginForm.value.gender}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email Address</th>
+                <td>{{loginForm.value.email}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Phone Number</th>
+                <td>{{loginForm.value.phone}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Category</th>
+                <td>{{loginForm.value.category}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Technology</th>
+                <td>{{newTech}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Profile Photo</th>
+                <td><img style="width: 100px;" class=" rounded-circle" [src]='imgUrl'
+                    alt="user picture"></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('cross click')">Close</button>
+        <button type="button" class="btn btn-outline-dark" (click)="saveData()" (click)="modal.close('cross click')">Save</button>
+    </div>
+</ng-template>
+
+<!-- [disabled]="!loginForm.valid" -->

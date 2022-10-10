@@ -1,0 +1,67 @@
+<h1>User Details</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Category</th>
+      <th scope="col">Technology</th>
+      <th scope="col">Profile photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users;let i=index;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.category}}</td>
+      <td>{{user.favTech}}</td>
+      <td><img style="width: 100px;" class="profile-picture border rounded-circle p-2" [src]='user.picture'
+        alt="user picture"></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div class="container">
+    
+  <div  class="d-flex flex-wrap">
+
+      <div *ngFor="let user of users" class="col-md-4 col-sm-12 col-xm-12">    
+          
+          <div class=" p-4 m-2 border rounded">
+          <div class="text-center">
+              <img class="profile-picture border rounded-circle p-2" [src]='user.picture'
+                  alt="user picture">
+          </div>
+          <div class="m-2 p-2">
+              <h5 class="text-center text-bg-dark border rounded p-1"> {{ user.name }}</h5>
+              <p class="row"><span class="col-4 fw-bold">Gender</span>{{ user.gender }}</p>
+              <p class="row"><span class="col-4 fw-bold">Email</span> {{ user.email }}</p>
+              <p class="row"><span class="col-4 fw-bold">Mobile</span> {{ user.mobile }}</p>
+              <p class="row"><span class="col-4 fw-bold">Category</span> {{ user.category }}</p>
+              <div><span class="col-4 fw-bold me-2">Technology</span>
+                  <span *ngFor="let tech of user.technology" class="border rounded p-1 me-2 text-bg-primary">{{tech}}</span>
+              </div>
+              <div>
+
+              </div>
+          </div>
+          </div>
+      
+      </div>
+
+  </div>
+</div> -->
+<!-- <p>Data: {{dataService.myData[0].}}</p> -->
+<!-- <ul>
+    <li *ngFor="let data of dataService.myData">
+      {{data}}
+
+    </li>
+  </ul> -->

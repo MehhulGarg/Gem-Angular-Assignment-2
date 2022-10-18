@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersDataService } from 'src/app/services/users-data.service';
-var data: any[]=[];
 
 @Component({
   selector: 'app-view',
@@ -9,17 +8,19 @@ var data: any[]=[];
 })
 export class ViewComponent implements OnInit {
 
-  constructor(public dataService: UsersDataService) {  }
-  message:any;
-  data=data;
-  myTech: String[]=[];
+  myTech: any[]=[];
+  constructor(public dataService: UsersDataService) { 
+    this.dataService.getUsers().subscribe((users: any[]) => {
+      this.users = users;
+      this.myTech = this.dataService.getValues();
+    })
+   }
+  
   users : any[]=[]
   ngOnInit(): void {
     this.myTech = this.dataService.getValues();
     
-    this.dataService.getUsers().subscribe((users: any[]) => {
-      this.users = users;
-    })
+    
 
   }
 

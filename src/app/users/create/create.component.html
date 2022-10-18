@@ -50,13 +50,13 @@
             <span *ngIf="category && category.invalid && category.touched">Please select category</span>
         </div>
         <div class="form-group">
-            <label for="technology"><strong>Technology</strong></label>
-            <div class="form-check form-check-inline" *ngFor="let control of techArray.controls; let i= index;">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{i}}" (change)="getSelectedTech()"
-                    [formControl]="$any(control)">
-                <label class="form-check-label" for="inlineCheckbox{{i}}">{{technologies[i]}}</label>
+            <label>Technology : &nbsp;</label>
+            <div class="d-inline" *ngFor="let technology of technologies; let i=index">
+                <input type="checkbox"  [value]="technology.value"
+                    (change)="onCheckboxChange($event)" />&nbsp;{{ technology.name}}&nbsp;
             </div>
         </div>
+        
         <div class="form-group">
             <label for="profile_photo"> <strong>Profile Photo</strong><i>(Optional)</i></label>
             <input type="file" class="form-control-file" id="profile_photo" accept=".jpg,.jpeg,.png" (change)="onChange($event)">
@@ -102,7 +102,7 @@
               </tr>
               <tr>
                 <th scope="row">Technology</th>
-                <td>{{newTech}}</td>
+                <td>{{selectedTechnologies}}</td>
               </tr>
               <tr>
                 <th scope="row">Profile Photo</th>
@@ -117,5 +117,3 @@
         <button type="button" class="btn btn-outline-dark" (click)="saveData()" (click)="modal.close('cross click')">Save</button>
     </div>
 </ng-template>
-
-<!--  -->
